@@ -20,7 +20,7 @@ function writePassword() {
 // generatePassword function
 function generatePassword() {
   userPassword = "";
-  pwCharacters = "";
+  characters = "";
 
   // Check that user selected a valid length
   pLength = prompt("Choose the desired length of your password, select a number from 8-128 characters.");
@@ -39,19 +39,19 @@ function generatePassword() {
     }
     // If selected length is valid, confirm characters to include
     if (wantLowercase === true) {
-      pwCharacters += lowercase;
+      characters += lowercase;
     }
     if (wantUppercase === true) {
-      pwCharacters += uppercase;
+      characters += uppercase;
     }
     if (wantNumbers === true) {
-      pwCharacters += numbers;
+      characters += numbers;
     }
     if (wantSymbols === true) {
-      pwCharacters += symbols;
+      characters += symbols;
     }
     for (var i = 0; i < pLength; i++) {
-      userPassword += pwCharacters[Math.floor(Math.random() * pwCharacters.length)];
+      userPassword += characters[Math.floor(Math.random() * characters.length)];
     }
     // If not characters were selected, error message
     if (wantLowercase === false && wantUppercase === false && wantNumbers ===false && wantSymbols === false) {
