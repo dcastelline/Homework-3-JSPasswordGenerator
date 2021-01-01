@@ -10,13 +10,11 @@
 var generateBtn = document.querySelector("#generate");
 
 // Variable arrays
-var lowerCase = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-var upperCase = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
-var numbers = [0,1,2,3,4,5,6,7,8,9];
-var symbols = ["!","@","#","$","%","^","&","*","(",")"];
-
-// Variables for characters included in password
-
+var lowercase = ["abcdefghijklmnopqrstuvwxyz"];
+var uppercase = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
+var numbers = [0123456789];
+var symbols = ["~!@#$%^&*()_+"];
+var passLength = "";
 
 // Write password to the #password input
 function writePassword() {
@@ -27,8 +25,51 @@ function writePassword() {
 
 }
 
+// generatePassword function
+function generatePassword() {
+  userPassword = "";
+  pwCharacters = "";
+
+  // Check that user selected a valid length
+  pLength = prompt("Choose the desired length of your password, select a number from 8-128 characters.");
+    if (pLength >= 8 && pLength <= 128) {
+      passLength.length = pLength;
+  
+      // If length is valid, allow user to select included characters
+      var wantLowercase = confirm("Would you like to include lowercase letters?");
+      var wantUppercase = confirm("Would you like to include uppercase letters?");
+      var wantNumbers = confirm("Would you like to include numbers?");
+      var wantSymbols = confirm("Would you like to include symbols?");
+    } else {
+      // User selected invalid length or no options
+      alert('Oops!  You must select a number from 8-128.  Click the "Generate Password" button to start again.');
+    }
+    // If selected length is valid, confirm characters to include
+    if (wantLowercase === true) {
+      pwCharacters += lowercase;
+    }
+    if (wantUppercase === true) {
+      pwCharacters += uppercase;
+    }
+    if (wantNumbers === true) {
+      pwCharacters += numbers;
+    }
+    if (wantSymbols === true) {
+      pwCharacters += symbols;
+    }
+    for (var i = 0; i < pLength; i++) {
+      userPassword += pwCharacters[Math.floor(Math.random() * pwCharacters.length)];
+    }
+    // If not characters were selected, error message
+    if (wantLowercase === false && wantUppercase === false && wantNumbers ===false && wantSymbols === false) {
+      alert('Oops!  You must select to include at least one type of character.  Click the "Generate Password" button to start again.')
+    } else {
+    console.log(userPassword);
+    return userPassword;
+    }
+}
+
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-// Password generated alert
-alert("Your password is: " + password);
+// I removed the alert as it displayed on loading the page and was not needed
