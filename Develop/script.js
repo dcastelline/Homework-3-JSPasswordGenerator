@@ -35,6 +35,7 @@ function generatePassword() {
     } else {
       // User selected invalid length or no options
       alert('Oops!  You must select a number from 8-128.  Click the "Generate Password" button to start again.');
+      return ('Error!  Click "Generate Password" to start again.');
     }
     // If selected length is valid, confirm characters to include
     if (wantLowercase === true) {
@@ -54,7 +55,8 @@ function generatePassword() {
     }
     // If not characters were selected, error message
     if (wantLowercase === false && wantUppercase === false && wantNumbers ===false && wantSymbols === false) {
-      alert('Oops!  You must select to include at least one type of character.  Click the "Generate Password" button to start again.')
+      alert('Oops!  You must select to include at least one type of character.  Click the "Generate Password" button to start again.');
+      return ('Error!  Click "Generate Password" to start again.');
     } else {
     console.log(userPassword);
     return userPassword;
